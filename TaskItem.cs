@@ -6,6 +6,8 @@ namespace CpuDispatcherOS
 
         public int Weight { get; set; }
 
+        public int LeftToProcess { get; set; }
+
         public int Wait { get; set; }
 
         public int Appear { get; set; }

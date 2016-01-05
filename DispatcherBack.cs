@@ -8,16 +8,25 @@ namespace CpuDispatcherOS
     public class DispatcherBack : Dispatcher
     {
         private int _currentTaskProcess = -1;
-        private int _leftOfTask;
-        private double executePart = 0.2;
+        private const double ExecutePart = 0.2;
 
         // S Y S T E M
         public int SystemWaitsGenTime;
-        private int _systemWaitsSince;
+
+        public DispatcherBack() : base("backgr")
+        {
+
+        }
 
         protected override void ExecuteTask()
         {
 
+        }
+
+        protected override void UpdateWaitOption(int waitTime, int except, int timeAppear)
+        {
+            foreach (var task in ListOfTasks.Where(task => task.Start == -1))
+                task.Wait = CurrentTime - task.Appear;
         }
     }
 }
