@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CpuDispatcherOS
 {
     public abstract class Dispatcher
     {
-        protected int CurrentTime = 0;
-        protected int Quantum = 100;
+        // S Y S T E M
+        public int SystemWaitsGenTime;
+        protected int CurrentTime;
 
         // T A S K S
         private int _currentIndex;
-        protected int NextAppears;
+        private int _nextAppears;
 
         // O P T I O N S
         public int CurrentTick = -1;
@@ -22,14 +22,15 @@ namespace CpuDispatcherOS
         public int FreqFrom;
         public int FreqTo;
 
-        private string _kind;
+        private readonly string _kind;
 
         public List<TaskItem> ListOfTasks = new List<TaskItem>();
+        public List<string> ListOfSequence = new List<string>(); 
         protected readonly Random Rnd = new Random();
 
         protected Dispatcher(string kind)
         {
-            NextAppears = Rnd.Next(FreqFrom, FreqTo);
+            _nextAppears = Rnd.Next(FreqFrom, FreqTo);
             _kind = kind;
         }
         
@@ -37,7 +38,7 @@ namespace CpuDispatcherOS
         {
             while (true)
             {
-                if (NextAppears > CurrentTime + Tick || Tick < 1)
+                if (_nextAppears > CurrentTime + Tick || Tick < 1)
                     return;
                 int nextWeight = Rnd.Next(WeightFrom, WeightTo + 1);
                 ListOfTasks.Add(new TaskItem()
@@ -45,12 +46,13 @@ namespace CpuDispatcherOS
                     Index = _currentIndex++,
                     Weight = nextWeight,
                     LeftToProcess = nextWeight,
-                    Appear = NextAppears,
+                    Appear = _nextAppears,
                     Start = -1,
                     Finish = -1,
+                    Kind = _kind,
                     State = "wait",
                 });
-                NextAppears += Rnd.Next(FreqFrom, FreqTo + 1);
+                _nextAppears += Rnd.Next(FreqFrom, FreqTo + 1);
             }
         }
 
@@ -60,6 +62,8 @@ namespace CpuDispatcherOS
 
         public void MakeOneTick()
         {
+            ListOfSequence.Clear();
+            ListOfSequence.Add(_kind);
             CurrentTick++;
             CurrentTime = CurrentTick * Tick;
 

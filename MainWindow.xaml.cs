@@ -38,16 +38,6 @@ namespace CpuDispatcherOS
         {
             _dispatcherBack = new DispatcherBack();
             _dispatcherFore = new DispatcherFore();
-            ClearInfo();
-        }
-
-        private void ClearInfo()
-        {
-            labelTdone.Content = "0";
-            labelTwait.Content = "0";
-            labelTicks.Content = "0";
-            labelSidle.Content = "0";
-            textBoxAvWait.Text = "0";
         }
 
         private void textBoxTick_TextChanged(object sender, TextChangedEventArgs e)
@@ -83,21 +73,51 @@ namespace CpuDispatcherOS
 
         private void FIllInfo()
         {
-            labelTdone.Content = _dispatcherBack.ListOfTasks.FindAll(task => task.State == "done").Count;
-            labelTwait.Content = _dispatcherBack.ListOfTasks.FindAll(task => task.State == "wait").Count;
-            labelTicks.Content = _dispatcherBack.CurrentTick;
-            labelSidle.Content = _dispatcherBack.SystemWaitsGenTime;
-            textBoxAvWait.Text = ((double)_dispatcherBack.ListOfTasks.Sum(task => task.Wait) /
-                _dispatcherBack.ListOfTasks.Count).ToString(CultureInfo.InvariantCulture);
+            labelTdoneFore.Content = _dispatcherFore.ListOfTasks.FindAll(task => task.State == "done").Count.ToString();
+            labelTwaitFore.Content = _dispatcherFore.ListOfTasks.FindAll(task => task.State != "done").Count.ToString();
+
+            labelTdoneBack.Content = _dispatcherBack.ListOfTasks.FindAll(task => task.State == "done").Count.ToString();
+            labelTwaitBack.Content = _dispatcherBack.ListOfTasks.FindAll(task => task.State != "done").Count.ToString();
+
+            labelTicks.Content = (_dispatcherBack.CurrentTick + 1).ToString();
+            labelSidle.Content = (_dispatcherBack.SystemWaitsGenTime + _dispatcherFore.SystemWaitsGenTime).ToString();
+            textBoxAvWaitFore.Text = 
+                ((double)_dispatcherFore.ListOfTasks.FindAll(task => task.State == "done").Sum(task => task.Wait) /
+                _dispatcherFore.ListOfTasks.FindAll(task => task.State == "done").Count)
+                .ToString(CultureInfo.InvariantCulture);
+            textBoxAvWaitBack.Text =
+                ((double)_dispatcherBack.ListOfTasks.FindAll(task => task.State == "done").Sum(task => task.Wait) /
+                _dispatcherBack.ListOfTasks.FindAll(task => task.State == "done").Count)
+                .ToString(CultureInfo.InvariantCulture);
+        }
+
+        private void FillListBoxSequence(List<string> lst1, List<string> lst2)
+        {
+            foreach (var str in lst1)
+                listBoxSequence.Items.Add(str);
+
+            listBoxSequence.Items.Add("");
+
+            foreach (var str in lst2)
+                listBoxSequence.Items.Add(str);
+
+            listBoxSequence.Items.Add("");
         }
 
         private void buttonTick_Click(object sender, RoutedEventArgs e)
         {
+            _dispatcherFore.MakeOneTick();
             _dispatcherBack.MakeOneTick();
+
+            FillListBoxSequence(_dispatcherFore.ListOfSequence, _dispatcherBack.ListOfSequence);
             FIllInfo();
 
-            listView.ItemsSource = null;
-            listView.ItemsSource = _dispatcherBack.ListOfTasks;
+            //listView.ItemsSource = null;
+            _listOfTasks.Clear();
+            _listOfTasks.AddRange(_dispatcherFore.ListOfTasks);
+            _listOfTasks.AddRange(_dispatcherBack.ListOfTasks);
+            _listOfTasks.Sort((x,y) => x.Appear.CompareTo(y.Appear));
+            listView.Items.Refresh();
         }
 
         private void buttonTest_Click(object sender, RoutedEventArgs e)

@@ -16,7 +16,7 @@ namespace CpuDispatcherOS
 
         public int Finish { get; set; }
 
-        public int Kind { get; set; }
+        public string Kind { get; set; }
 
         public string State { get; set; }
     }

@@ -5,24 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CpuDispatcherOS"
         mc:Ignorable="d"
-        Title="Tick" Height="535.526" Width="859.211" MinWidth="860" MinHeight="536" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="Tick" Height="700.734" Width="939.908" MinWidth="860" MinHeight="536" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="251"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="buttonTick" Content="n Tick" Grid.Column="1" HorizontalAlignment="Left" Height="51" Margin="49,285,0,0" VerticalAlignment="Top" Width="84" FontSize="24" Background="White" Click="buttonTick_Click" IsHitTestVisible="True" AllowDrop="True" IsTabStop="False"/>
-        <Button x:Name="buttonStart" Content="Start" Grid.Column="1" HorizontalAlignment="Left" Height="51" Margin="49,285,0,0" VerticalAlignment="Top" Width="84" FontSize="24" Background="White" Click="buttonStart_Click" IsTabStop="False" Panel.ZIndex="1" Visibility="Hidden"/>
-        <Label x:Name="label1" Content="Appear frequency (ms)" Grid.Column="1" Height="38" Margin="0,180,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="True" Focusable="True"/>
-        <Label x:Name="label" Content="Weight" Grid.Column="1" HorizontalAlignment="Center" Margin="87,90,87,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38"/>
-        <Label x:Name="labelTickTime" Content="Tick time (ms)" Grid.Column="1" HorizontalAlignment="Center" Margin="55,15,55,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38"/>
-        <TextBox x:Name="textBoxTick" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="81,55,0,0" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxTick_TextChanged" AllowDrop="False" IsHitTestVisible="True" IsEnabled="False"/>
+        <Button x:Name="buttonTick" Content="n Tick" Grid.Column="2" HorizontalAlignment="Left" Height="51" Margin="49,285,0,0" VerticalAlignment="Top" Width="84" FontSize="24" Background="White" Click="buttonTick_Click" IsHitTestVisible="True" AllowDrop="True" IsTabStop="False"/>
+        <Button x:Name="buttonStart" Content="Start" Grid.Column="2" HorizontalAlignment="Left" Height="51" Margin="49,285,0,0" VerticalAlignment="Top" Width="84" FontSize="24" Background="White" Click="buttonStart_Click" IsTabStop="False" Panel.ZIndex="1" Visibility="Hidden"/>
+        <Label x:Name="label1" Content="Appear frequency (ms)" Grid.Column="2" Height="38" Margin="0,180,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="True" Focusable="True"/>
+        <Label x:Name="label" Content="Weight" Grid.Column="2" HorizontalAlignment="Center" Margin="87,90,87,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38" Width="77"/>
+        <Label x:Name="labelTickTime" Content="Tick time (ms)" Grid.Column="2" HorizontalAlignment="Center" Margin="55,15,55,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38" Width="141"/>
+        <TextBox x:Name="textBoxTick" Grid.Column="2" HorizontalAlignment="Left" Height="37" Margin="81,55,0,0" TextWrapping="Wrap" Text="500" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxTick_TextChanged" AllowDrop="False" IsHitTestVisible="True" IsEnabled="False"/>
 
-        <TextBox x:Name="textBoxWeightBack" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="20,145,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxWeightFrom_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
-        <TextBox x:Name="textBoxWeightFore" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="165,145,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxWeightTo_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
-        <TextBox x:Name="textBoxFreqBack" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="20,240,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxFreqFrom_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
-        <TextBox x:Name="textBoxFreqFore" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="165,240,0,0" TextWrapping="Wrap" Text="2" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxFreqTo_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
-        <ListView x:Name="listView" Margin="20" Foreground="Black" BorderBrush="Black" IsHitTestVisible="True" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+        <TextBox x:Name="textBoxWeightBack" Grid.Column="2" HorizontalAlignment="Left" Height="37" Margin="20,145,0,0" TextWrapping="Wrap" Text="20" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxWeightFrom_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
+        <TextBox x:Name="textBoxWeightFore" Grid.Column="2" HorizontalAlignment="Left" Height="37" Margin="165,145,0,0" TextWrapping="Wrap" Text="130" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxWeightTo_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
+        <TextBox x:Name="textBoxFreqBack" Grid.Column="2" HorizontalAlignment="Left" Height="37" Margin="20,240,0,0" TextWrapping="Wrap" Text="150" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxFreqFrom_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
+        <TextBox x:Name="textBoxFreqFore" Grid.Column="2" HorizontalAlignment="Left" Height="37" Margin="165,240,0,0" TextWrapping="Wrap" Text="90" VerticalAlignment="Top" Width="70" FontSize="20" TextChanged="textBoxFreqTo_TextChanged" AllowDrop="False" IsHitTestVisible="True"/>
+        <ListView x:Name="listView" Margin="20,20,6,20" Foreground="Black" BorderBrush="Black" IsHitTestVisible="True" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridView.ColumnHeaderContainerStyle>
@@ -33,45 +34,51 @@
                     <GridViewColumn Width="50" DisplayMemberBinding="{Binding Index}">
                         <GridViewColumnHeader Content="Index"/>
                     </GridViewColumn>
-                    <GridViewColumn Width="82" DisplayMemberBinding="{Binding Weight}">
+                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding Weight}">
                         <GridViewColumnHeader Content="Weight"/>
                     </GridViewColumn>
-                    <GridViewColumn Width="80" DisplayMemberBinding="{Binding Wait}">
+                    <GridViewColumn Width="40" DisplayMemberBinding="{Binding LeftToProcess}">
+                        <GridViewColumnHeader Content="Left"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="70" DisplayMemberBinding="{Binding Wait}">
                         <GridViewColumnHeader Content="Wait time"/>
                     </GridViewColumn>
-                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding Appear}">
+                    <GridViewColumn Width="46" DisplayMemberBinding="{Binding Appear}">
                         <GridViewColumnHeader Content="Appear"/>
                     </GridViewColumn>
-                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding Start}">
+                    <GridViewColumn Width="46" DisplayMemberBinding="{Binding Start}">
                         <GridViewColumnHeader Content="Start"/>
                     </GridViewColumn>
                     <GridViewColumn Width="50" DisplayMemberBinding="{Binding Finish}">
                         <GridViewColumnHeader Content="Finish"/>
                     </GridViewColumn>
-                    <GridViewColumn Width="70" DisplayMemberBinding="{Binding Kind}">
+                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding Kind}">
                         <GridViewColumnHeader Content="Pr kind"/>
                     </GridViewColumn>
-                    <GridViewColumn Width="70" DisplayMemberBinding="{Binding State}">
+                    <GridViewColumn Width="60" DisplayMemberBinding="{Binding State}">
                         <GridViewColumnHeader Content="State"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label x:Name="labelTasksDone" Content="Tasks done" Grid.Column="1" Height="29" Margin="0,345,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelTasksWait" Content="Tasks waiting" Grid.Column="1" Height="29" Margin="0,375,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelTick" Content="Ticks done" Grid.Column="1" Height="29" Margin="0,405,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelSystemWaits" Content="System idle" Grid.Column="1" Height="29" Margin="0,435,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelTaskAvWaits" Content="Avarage wait" Grid.Column="1" Height="29" Margin="0,465,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelTdone" Content="0" Grid.Column="1" Height="29" Margin="165,345,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelTwait" Content="0" Grid.Column="1" Height="29" Margin="165,375,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelTicks" Content="0" Grid.Column="1" Height="29" Margin="165,405,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <Label x:Name="labelSidle" Content="0" Grid.Column="1" Height="29" Margin="165,435,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left"/>
-        <TextBox x:Name="textBoxAvWait" Grid.Column="1" HorizontalAlignment="Left" Height="29" Margin="168,465,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="21.333" MaxLines="1" MaxLength="5" IsUndoEnabled="False" IsReadOnly="True" BorderBrush="{x:Null}" BorderThickness="0" AllowDrop="False" IsHitTestVisible="False" Focusable="False" IsTabStop="False"/>
-        <Button x:Name="buttonTest" Content="Test" Grid.Column="1" HorizontalAlignment="Left" Height="51" Margin="161,285,0,0" VerticalAlignment="Top" Width="54" FontSize="24" Background="White" IsTabStop="False" Panel.ZIndex="1" Click="buttonTest_Click"/>
-        <Label x:Name="label_Copy" Content="Backgr" Grid.Column="1" HorizontalAlignment="Left" Margin="15,104,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38"/>
-        <Label x:Name="label_Copy1" Content="Foregr" Grid.Column="1" HorizontalAlignment="Left" Margin="165,104,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38"/>
-        <Label x:Name="label_Copy2" Content="Backgr" Grid.Column="1" HorizontalAlignment="Left" Margin="15,206,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38"/>
-        <Label x:Name="label_Copy3" Content="Foregr" Grid.Column="1" HorizontalAlignment="Left" Margin="165,206,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38"/>
+        <Label x:Name="labelTasksDone" Content="Tasks done" Grid.Column="2" Height="29" Margin="67,345,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="112"/>
+        <Label x:Name="labelTasksWait" Content="Tasks waiting" Grid.Column="2" Height="29" Margin="55,400,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="133"/>
+        <Label x:Name="labelTick" Content="Ticks done" Grid.Column="2" Height="29" Margin="0,572,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="110" RenderTransformOrigin="0.128,5.608"/>
+        <Label x:Name="labelSystemWaits" Content="System idle" Grid.Column="2" Height="29" Margin="0,538,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="117"/>
+        <Label x:Name="labelTaskAvWaits" Content="Avarage wait" Grid.Column="2" Height="29" Margin="55,458,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="131"/>
+        <Label x:Name="labelTdoneFore" Content="0" Grid.Column="2" Height="29" Margin="42,371,0,0" VerticalAlignment="Top" FontSize="21.333" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="109"/>
+        <Label x:Name="labelTwaitFore" Content="0" Grid.Column="2" Height="29" Margin="42,429,0,0" VerticalAlignment="Top" FontSize="21.333" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="109"/>
+        <Label x:Name="labelTicks" Content="0" Grid.Column="2" Height="29" Margin="161,572,0,0" VerticalAlignment="Top" FontSize="21.333" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="80"/>
+        <Label x:Name="labelSidle" Content="0" Grid.Column="2" Height="29" Margin="161,538,0,0" VerticalAlignment="Top" FontSize="21.333" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="80"/>
+        <TextBox x:Name="textBoxAvWaitFore" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="42,487,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="21.333" MaxLines="1" MaxLength="5" IsUndoEnabled="False" IsReadOnly="True" BorderBrush="{x:Null}" BorderThickness="0" AllowDrop="False" IsHitTestVisible="False" Focusable="False" IsTabStop="False" Width="109"/>
+        <Label x:Name="label_Copy" Content="Backgr" Grid.Column="2" HorizontalAlignment="Left" Margin="15,104,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38" Width="74"/>
+        <Label x:Name="label_Copy1" Content="Foregr" Grid.Column="2" HorizontalAlignment="Left" Margin="165,104,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38" Width="71"/>
+        <Label x:Name="label_Copy2" Content="Backgr" Grid.Column="2" HorizontalAlignment="Left" Margin="15,206,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38" Width="74"/>
+        <Label x:Name="label_Copy3" Content="Foregr" Grid.Column="2" HorizontalAlignment="Left" Margin="165,206,0,0" VerticalAlignment="Top" FontSize="21.333" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Foreground="Black" IsHitTestVisible="True" Focusable="True" Height="38" Width="71"/>
+        <ListBox x:Name="listBoxSequence" Grid.Column="1" Margin="20"/>
+        <Label x:Name="labelTdoneBack" Content="0" Grid.Column="2" Height="29" Margin="161,371,0,0" VerticalAlignment="Top" FontSize="21.333" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="80"/>
+        <Label x:Name="labelTwaitBack" Content="0" Grid.Column="2" Height="29" Margin="161,429,0,0" VerticalAlignment="Top" FontSize="21.333" VerticalContentAlignment="Center" IsEnabled="False" Foreground="Black" IsHitTestVisible="False" Padding="5,0" HorizontalAlignment="Left" Width="80" RenderTransformOrigin="4.349,0.504"/>
+        <TextBox x:Name="textBoxAvWaitBack" Grid.Column="2" HorizontalAlignment="Left" Height="29" Margin="165,487,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" FontSize="21.333" MaxLines="1" MaxLength="5" IsUndoEnabled="False" IsReadOnly="True" BorderBrush="{x:Null}" BorderThickness="0" AllowDrop="False" IsHitTestVisible="False" Focusable="False" IsTabStop="False" Width="76"/>
 
     </Grid>
 </Window>

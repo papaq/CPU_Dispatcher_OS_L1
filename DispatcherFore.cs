@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CpuDispatcherOS
@@ -9,26 +8,25 @@ namespace CpuDispatcherOS
         private const double ExecutePart = 0.8;
         private int _currentTask = -1;
         private int _leftOfQuantum;
-
-        // S Y S T E M
-        public int SystemWaitsGenTime = 0;
+        private int _quantum = 100;
 
         public DispatcherFore() : base("foregr")
         {
-            _leftOfQuantum = Quantum;
+            _leftOfQuantum = _quantum;
         }
         
         protected override void ExecuteTask()
         {
             var tempTime = CurrentTime;
 
-            while (true)
+            while (tempTime < CurrentTime + Convert.ToInt16(Tick * ExecutePart))
             {
                 // Task was interrupted during last quantum
                 TaskItem task;
-                if (_leftOfQuantum < Quantum && -1 != _currentTask)
+                if (_leftOfQuantum < _quantum && -1 != _currentTask)
                 {
                     task = ListOfTasks.Find(t => t.Index == _currentTask);
+                    ListOfSequence.Add(task.Index.ToString());
 
                     // Task needs less, than a quantum
                     if (task.LeftToProcess < _leftOfQuantum)
@@ -48,10 +46,10 @@ namespace CpuDispatcherOS
                         tempTime += _leftOfQuantum;
                         task.LeftToProcess -= _leftOfQuantum;
 
-                        UpdateWaitOption(Quantum, task.Index, tempTime);
+                        UpdateWaitOption(_quantum, task.Index, tempTime);
                     }
                 }
-                _leftOfQuantum = Quantum;
+                _leftOfQuantum = _quantum;
 
                 task = ListOfTasks.Find(t => t.State != "done" && t.Index > _currentTask && t.Appear < tempTime);
 
@@ -60,26 +58,31 @@ namespace CpuDispatcherOS
                 {
                     _currentTask = -1;
                     SystemWaitsGenTime ++;
+                    tempTime ++;
                     continue;
                 }
+
+                ListOfSequence.Add(task.Index.ToString());
+                _currentTask = task.Index;
 
                 // Task was not processed before
                 if (task.State == "wait")
                 {
                     task.Start = tempTime;
                     task.State = "process";
+                    task.Wait = task.Start - task.Appear;
                 }
 
                 // More than a quantum is left
-                if (tempTime < CurrentTime + Tick * ExecutePart - Quantum)
+                if (tempTime < CurrentTime + Tick * ExecutePart - _quantum)
                 {
                     // Task needs more time than a quantum
-                    if (task.LeftToProcess > Quantum)
+                    if (task.LeftToProcess > _quantum)
                     {
-                        task.LeftToProcess -= Quantum;
-                        tempTime += Quantum;
+                        task.LeftToProcess -= _quantum;
+                        tempTime += _quantum;
 
-                        UpdateWaitOption(Quantum, task.Index, tempTime);
+                        UpdateWaitOption(_quantum, task.Index, tempTime);
                     }
 
                     // Task can be done during next quantum
@@ -98,10 +101,9 @@ namespace CpuDispatcherOS
                 // Less time than a quantum until the end of tick is left
                 else
                 {
-                    _leftOfQuantum = CurrentTime + Convert.ToInt16(Tick*ExecutePart) - tempTime;
 
                     // Task needs even less time than left until end of tick
-                    if (task.LeftToProcess < Quantum - _leftOfQuantum)
+                    if (task.LeftToProcess < CurrentTime + Convert.ToInt16(Tick * ExecutePart) - tempTime)
                     {
                         tempTime += task.LeftToProcess;
 
@@ -115,9 +117,11 @@ namespace CpuDispatcherOS
                     // Task will be interrupted
                     else
                     {
-                        task.LeftToProcess += _leftOfQuantum - Quantum;
+                        _leftOfQuantum = _quantum + tempTime - CurrentTime - Convert.ToInt16(Tick * ExecutePart);
 
-                        UpdateWaitOption(Quantum - _leftOfQuantum, 
+                        task.LeftToProcess += _leftOfQuantum - _quantum;
+
+                        UpdateWaitOption(_quantum - _leftOfQuantum, 
                             task.Index, CurrentTime + Convert.ToInt16(Tick * ExecutePart));
 
                         _currentTask = task.Index;
